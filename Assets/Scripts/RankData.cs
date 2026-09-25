@@ -1,52 +1,43 @@
 using UnityEngine;
-using TMPro;
-using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine.UI;
-using System;
+using TMPro;
 
 [System.Serializable]
 public struct PlayerData
 {
+    public string playerId;
     public string playerName;
     public int rankNumber;
     public int playerScore;
-    public Sprite profileSprite;
+    public Texture profileTexture;
 
-    public PlayerData(int rankNumber, string playerName, int playerScore, Sprite profileSprite)
+    public PlayerData(string playerId, int rankNumber, string playerName, int playerScore, Texture profileTexture)
     {
+        this.playerId = playerId;
         this.rankNumber = rankNumber;
         this.playerName = playerName;
         this.playerScore = playerScore;
-        this.profileSprite = profileSprite;
+        this.profileTexture = profileTexture;
     }
 }
+
+
 public class RankData : MonoBehaviour
-{   
-    public PlayerData playerData;
+{
     [SerializeField] private RawImage profileImg;
-    [SerializeField] private Sprite defaultProfileSprite;
+    [SerializeField] private Texture defaultProfileTexture;
     [SerializeField] private TMP_Text rankText;
     [SerializeField] private TMP_Text playerNameText;
     [SerializeField] private TMP_Text scoreText;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    public void SetData(PlayerData playerData)
     {
-        
-    }
+        profileImg.texture =
+            playerData.profileTexture != null
+            ? playerData.profileTexture : defaultProfileTexture;
 
-    [ContextMenu("Update Data")]
-    public void UpdateData()
-    {
-        profileImg.texture = playerData.profileSprite != null ? playerData.profileSprite.texture : defaultProfileSprite.texture;
         rankText.text = playerData.rankNumber.ToString();
         playerNameText.text = playerData.playerName;
         scoreText.text = playerData.playerScore.ToString("0");
     }
-
 }
