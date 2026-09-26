@@ -8,13 +8,15 @@ using System;
 public struct PlayerData
 {
     public string playerName;
+    public string playerNameP;
     public int rankNumber;
     public int playerScore;
     public Sprite profileSprite;
 
-    public PlayerData(int rankNumber, string playerName, int playerScore, Sprite profileSprite)
+    public PlayerData(int rankNumber,string playerNameP, string playerName, int playerScore, Sprite profileSprite)
     {
         this.rankNumber = rankNumber;
+        this.playerNameP = playerNameP;
         this.playerName = playerName;
         this.playerScore = playerScore;
         this.profileSprite = profileSprite;
@@ -27,6 +29,7 @@ public class RankData : MonoBehaviour
     [SerializeField] private Sprite defaultProfileSprite;
     [SerializeField] private TMP_Text rankText;
     [SerializeField] private TMP_Text playerNameText;
+    [SerializeField] private TMP_Text playerNameTextP;
     [SerializeField] private TMP_Text scoreText;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -46,6 +49,7 @@ public class RankData : MonoBehaviour
         profileImg.texture = playerData.profileSprite != null ? playerData.profileSprite.texture : defaultProfileSprite.texture;
         rankText.text = playerData.rankNumber.ToString();
         playerNameText.text = playerData.playerName;
+        playerNameTextP.text = playerData.playerNameP;
         scoreText.text = playerData.playerScore.ToString("0");
     }
 

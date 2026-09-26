@@ -24,6 +24,7 @@ public class RankUiManager : MonoBehaviour
             RankData rankData = rankObj.GetComponent<RankData>();
             rankData.playerData = new PlayerData(playerDatas[i].rankNumber
                 , playerDatas[i].playerName
+                , playerDatas[i].playerNameP
                 , playerDatas[i].playerScore
                 , playerDatas[i].profileSprite);
 
